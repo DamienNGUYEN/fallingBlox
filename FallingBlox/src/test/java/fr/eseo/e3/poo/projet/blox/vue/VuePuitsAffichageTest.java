@@ -1,12 +1,8 @@
 package fr.eseo.e3.poo.projet.blox.vue;
 
 import fr.eseo.e3.poo.projet.blox.controleur.Gravite;
-import fr.eseo.e3.poo.projet.blox.modele.Coordonnees;
-import fr.eseo.e3.poo.projet.blox.modele.Couleur;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.UsineDePiece;
-import fr.eseo.e3.poo.projet.blox.modele.pieces.IPiece;
-import fr.eseo.e3.poo.projet.blox.modele.pieces.OPiece;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +20,7 @@ public class VuePuitsAffichageTest {
         Puits puits = new Puits(10, 20, 29, 5);
         VuePuits vuePuits = new VuePuits(puits);
 
-        UsineDePiece.setMode(UsineDePiece.ALEATOIRE_PIECE);
+        UsineDePiece.setMode(UsineDePiece.ALEATOIRE_COMPLET);
 
         vuePuits.getPuits().setPieceSuivante(UsineDePiece.genererPiece());
         vuePuits.getPuits().setPieceSuivante(UsineDePiece.genererPiece());

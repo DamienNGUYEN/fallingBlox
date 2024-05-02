@@ -2,22 +2,21 @@ package fr.eseo.e3.poo.projet.blox.modele.pieces;
 
 import fr.eseo.e3.poo.projet.blox.modele.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Piece {
-    private ArrayList<Element> elements;
+    private final ArrayList<Element> elements;
     private Puits puits;
 
     public Piece(Coordonnees coordonnees, Couleur couleur){
-        this.elements = new ArrayList<Element>();
+        this.elements = new ArrayList<>();
         setElements(coordonnees, couleur);
     }
 
     protected abstract void setElements(Coordonnees coordonnees, Couleur couleur);
 
     //Accesseurs
-    public ArrayList getElements(){
+    public ArrayList<Element> getElements(){
         return elements;
     }
 
@@ -32,7 +31,7 @@ public abstract class Piece {
 
     public void setPosition(int abscisse, int ordonnee){
         Coordonnees coordonnees = new Coordonnees(abscisse, ordonnee);
-        Couleur couleur = elements.get(0).getCouleur();
+        Couleur couleur = elements.getFirst().getCouleur();
         elements.clear();
 
         setElements(coordonnees, couleur);
@@ -72,8 +71,8 @@ public abstract class Piece {
         for (int i=0; i<4; i++){
             int x = elements.get(i).getCoordonnees().getAbscisse();
             int y = elements.get(i).getCoordonnees().getOrdonnee();
-            x = x - elements.get(0).getCoordonnees().getAbscisse();
-            y = y - elements.get(0).getCoordonnees().getOrdonnee();
+            x = x - elements.getFirst().getCoordonnees().getAbscisse();
+            y = y - elements.getFirst().getCoordonnees().getOrdonnee();
 
             if (sensHoraire){
                 y = -y;
@@ -82,8 +81,8 @@ public abstract class Piece {
                 x = -x;
             }
 
-            x = x + elements.get(0).getCoordonnees().getOrdonnee();
-            y = y + elements.get(0).getCoordonnees().getAbscisse();
+            x = x + elements.getFirst().getCoordonnees().getOrdonnee();
+            y = y + elements.getFirst().getCoordonnees().getAbscisse();
 
             if ( y < 0 || y >= puits.getLargeur()){
                 throw new BloxException("Si elle tourne, la pièce sortira du puits.", BloxException.BLOX_SORTIE_PUITS);
@@ -94,7 +93,7 @@ public abstract class Piece {
         }
 
         for (int i=1; i<4; i++){
-            elements.get(i).deplacerDe(-elements.get(0).getCoordonnees().getAbscisse(), -elements.get(0).getCoordonnees().getOrdonnee());
+            elements.get(i).deplacerDe(-elements.getFirst().getCoordonnees().getAbscisse(), -elements.getFirst().getCoordonnees().getOrdonnee());
         }
 
         for (int i=1; i<4; i++){
@@ -109,7 +108,7 @@ public abstract class Piece {
         }
 
         for (int i=1; i<4; i++){
-            elements.get(i).deplacerDe(elements.get(0).getCoordonnees().getAbscisse(), elements.get(0).getCoordonnees().getOrdonnee());
+            elements.get(i).deplacerDe(elements.getFirst().getCoordonnees().getAbscisse(), elements.getFirst().getCoordonnees().getOrdonnee());
         }
 
     }
