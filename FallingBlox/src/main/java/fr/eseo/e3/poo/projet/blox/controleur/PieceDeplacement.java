@@ -51,8 +51,7 @@ public class PieceDeplacement extends MouseAdapter {
             if (event.getWheelRotation() > 0){
                 try {
                     puits.getPieceActuelle().deplacerDe(0, 1);
-                } catch (BloxException ignored) {
-                }
+                } catch (BloxException ignored) {}
 
                 //Peut-être à supprimer
                 vuePuits.repaint();

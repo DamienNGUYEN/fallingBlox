@@ -22,16 +22,12 @@ public class PieceRotation extends MouseAdapter {
         if ( SwingUtilities.isRightMouseButton(event)){
             try {
                 puits.getPieceActuelle().tourner(true);
-            } catch (BloxException e) {
-                throw new RuntimeException(e);
-            }
+            } catch (BloxException ignored) {}
         }
         else if ( SwingUtilities.isLeftMouseButton(event)){
             try {
                 puits.getPieceActuelle().tourner(false);
-            } catch (BloxException e) {
-                throw new RuntimeException(e);
-            }
+            } catch (BloxException ignored) {}
         }
 
         //Peut-être à supprimer

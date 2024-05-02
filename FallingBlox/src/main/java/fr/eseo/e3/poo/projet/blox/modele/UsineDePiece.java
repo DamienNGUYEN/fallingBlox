@@ -12,7 +12,7 @@ public class UsineDePiece {
     public static final int CYCLIC = 3;
 
     private static int mode = 2;
-    private static int cyclique = 1;
+    private static int numeroDeCycle = 1;
 
     private UsineDePiece(){}
 
@@ -45,13 +45,13 @@ public class UsineDePiece {
                 }
 
             case 3 :
-                switch (cyclique){
+                switch (numeroDeCycle){
                     case 1 :
-                        cyclique = 2;
-                        return new OPiece(coo, Couleur.values()[cyclique]);
+                        numeroDeCycle = 2;
+                        return new OPiece(coo, Couleur.values()[numeroDeCycle]);
                     case 2 :
-                        cyclique = 1;
-                        return new IPiece(coo, Couleur.values()[cyclique]);
+                        numeroDeCycle = 1;
+                        return new IPiece(coo, Couleur.values()[numeroDeCycle]);
                 }
 
             default:
