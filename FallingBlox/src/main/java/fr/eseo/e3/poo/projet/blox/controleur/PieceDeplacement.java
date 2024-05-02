@@ -4,13 +4,11 @@ import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class PieceDeplacement extends MouseAdapter {
-    private VuePuits vuePuits;
-    private Puits puits;
+    private final VuePuits vuePuits;
+    private final Puits puits;
     private int derniereColonne = -1;
 
     public PieceDeplacement(VuePuits vuePuits){
@@ -21,7 +19,7 @@ public class PieceDeplacement extends MouseAdapter {
     @Override
     public void mouseMoved(MouseEvent event) {
         if (puits.getPieceActuelle() != null){
-            int x = (int) event.getX()/vuePuits.getTaille();
+            int x = event.getX()/vuePuits.getTaille();
             if (derniereColonne  < 0){
                 derniereColonne = x;
             }
@@ -32,9 +30,7 @@ public class PieceDeplacement extends MouseAdapter {
                 for (int i = 0; i < Math.abs(x - derniereColonne); i++) {
                     try {
                         puits.getPieceActuelle().deplacerDe(deltaX, 0);
-                    } catch (BloxException e) {
-                        throw new RuntimeException(e);
-                    }
+                    } catch (BloxException ignored) {}
                     derniereColonne = x;
 
                     //Peut-être à supprimer
@@ -46,8 +42,7 @@ public class PieceDeplacement extends MouseAdapter {
 
     @Override
     public void mouseEntered(MouseEvent event){
-        int x = (int) event.getX()/vuePuits.getTaille();
-        derniereColonne = x;
+        derniereColonne = event.getX()/vuePuits.getTaille();
     }
 
     @Override
@@ -56,8 +51,7 @@ public class PieceDeplacement extends MouseAdapter {
             if (event.getWheelRotation() > 0){
                 try {
                     puits.getPieceActuelle().deplacerDe(0, 1);
-                } catch (BloxException e) {
-                    throw new RuntimeException(e);
+                } catch (BloxException ignored) {
                 }
 
                 //Peut-être à supprimer
