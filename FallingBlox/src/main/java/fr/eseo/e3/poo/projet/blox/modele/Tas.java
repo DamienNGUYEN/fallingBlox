@@ -2,25 +2,33 @@ package fr.eseo.e3.poo.projet.blox.modele;
 
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Random;
 
 public class Tas {
+    public String  NOUVEAU_SCORE = "nouveauScore";
     private Puits puits;
     private Element [][] elements;
+    private int score = 0;
+    private PropertyChangeSupport pcs;
 
     public Tas(Puits puits){
         this.puits = puits;
         elements = new Element[puits.getProfondeur()][puits.getLargeur()];
+        this.pcs = new PropertyChangeSupport(this);
     }
 
     public Tas(Puits puits, int nbElements){
         this.puits = puits;
         construireTas(nbElements, nbElements/getPuits().getLargeur()+1, new Random());
+        this.pcs = new PropertyChangeSupport(this);
     }
 
     public Tas(Puits puits, int nbElements, int nbLignes){
         this.puits = puits;
         construireTas(nbElements, nbLignes, new Random());
+        this.pcs = new PropertyChangeSupport(this);
     }
 
     public Puits getPuits() {
@@ -77,7 +85,17 @@ public class Tas {
                 }
                 elements[0] = new Element[elements[0].length];
                 y += 1;
+                score += 1;
+                pcs.firePropertyChange(NOUVEAU_SCORE, score -1, score);
             }
         }
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener){
+        pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener){
+        pcs.removePropertyChangeListener(listener);
     }
 }

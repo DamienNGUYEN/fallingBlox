@@ -28,6 +28,7 @@ public class VuePuitsAffichageTest {
         Gravite gravite = new Gravite(vuePuits);
 
         PanneauInformation panneauInformation = new PanneauInformation(puits);
+        Score score = new Score(puits);
 
         Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         int ecranHauteur = (int)tailleEcran.getHeight();
@@ -36,8 +37,10 @@ public class VuePuitsAffichageTest {
         //Ajouter le JPanel au JFrame
         f.add(vuePuits);
         f.add(panneauInformation);
+        f.add(score);
         vuePuits.setBounds(5, 5, vuePuits.getPreferredSize().width, vuePuits.getPreferredSize().height);
         panneauInformation.setBounds(vuePuits.getPreferredSize().width + 5, 5, panneauInformation.getPreferredSize().width, panneauInformation.getPreferredSize().height);
+        score.setBounds(vuePuits.getPreferredSize().width + 10, panneauInformation.getPreferredSize().height + 10, score.getPreferredSize().width, score.getPreferredSize().height);
 
         f.setLayout(null);
 
