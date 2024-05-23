@@ -59,7 +59,7 @@ public class Tas {
 
     public void ajouterElements(Piece piece){
         for (int i=0; i<4; i++){
-            Element element = (Element) piece.getElements().get(i);
+            Element element = piece.getElements().get(i);
             elements[element.getCoordonnees().getOrdonnee()][element.getCoordonnees().getAbscisse()] = element;
         }
         supprimerLigne();
@@ -86,6 +86,7 @@ public class Tas {
                 elements[0] = new Element[elements[0].length];
                 y += 1;
                 score += 1;
+
                 pcs.firePropertyChange(NOUVEAU_SCORE, score -1, score);
             }
         }

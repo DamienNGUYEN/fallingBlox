@@ -52,6 +52,16 @@ public class PieceDeplacementClavier extends KeyAdapter {
             }catch(BloxException ignored){}
         }
 
+        //Descente directe, équivalent du clic molette
+        else if(e.getKeyCode() == KeyEvent.VK_SPACE){
+            while(true){
+                try{
+                    puits.getPieceActuelle().deplacerDe(0,1);
+                }catch(BloxException exception){
+                    return;
+                }
+            }
+        }
 
         vuePuits.repaint();
     }
