@@ -14,6 +14,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener {
     private Puits puits;
     private int taille;
     private VuePiece vuePiece;
+    private VueGameOver vueGameOver;
     public VueTas vueTas;
 
     public VuePuits(Puits puits){
@@ -21,6 +22,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener {
         this.taille = TAILLE_PAR_DEFAUT;
         this.setPreferredSize(new Dimension(TAILLE_PAR_DEFAUT * puits.getLargeur() +2, TAILLE_PAR_DEFAUT * puits.getProfondeur() +2));
         vueTas = new VueTas(this);
+        vueGameOver = new VueGameOver();
 
         //Cette ligne permet de faire fonctionner le clavier
         //Vouez-lui un culte s'il-vous-plaît, son existance m'est salvatrice
@@ -67,6 +69,10 @@ public class VuePuits extends JPanel implements PropertyChangeListener {
         return vueTas;
     }
 
+    public VueGameOver getVueGameOver() {
+        return vueGameOver;
+    }
+
     //Mutateur
     public void setPuits(Puits puits) {
         this.puits = puits;
@@ -81,6 +87,10 @@ public class VuePuits extends JPanel implements PropertyChangeListener {
         this.vuePiece = vuePiece;
     }
 
+    public void setVueGameOver(VueGameOver vueGameOver) {
+        this.vueGameOver = vueGameOver;
+    }
+
     //Methodes
 
     @Override
@@ -92,6 +102,11 @@ public class VuePuits extends JPanel implements PropertyChangeListener {
          */
         Graphics2D g2D = (Graphics2D)g.create();
         /* Nous utiliserons l'instance de Graphics2D*/
+
+        if(puits.isLimitReached()){
+            vueGameOver.afficherGameOver(g2D);
+            return;
+        }
 
         //Affichage de la grille
         g.setColor(java.awt.Color.LIGHT_GRAY);

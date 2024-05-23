@@ -7,8 +7,9 @@ import java.beans.*;
 public class Puits {
     public int LARGEUR_PAR_DEFAUT = 10;
     public int PROFONDEUR_PAR_DEFAUT = 20;
-    public String  MODIFICATION_PIECE_ACTUELLE = "pieceActuelle";
-    public String  MODIFICATION_PIECE_SUIVANTE = "pieceSuivante";
+    public final String  MODIFICATION_PIECE_ACTUELLE = "pieceActuelle";
+    public final String  MODIFICATION_PIECE_SUIVANTE = "pieceSuivante";
+    public final int ORDONNEE_APPARTION_PIECE_ACTUELLE = 2;
     private int largeur;
     private int profondeur;
     private Piece pieceActuelle;
@@ -77,9 +78,13 @@ public class Puits {
     //Mutateurs
     public void setPieceSuivante(Piece pieceSuivante) {
         if (this.pieceSuivante != null){
+
+            if(isLimitReached())
+                return;
+
             Piece pieceTemp = this.pieceActuelle;
             pieceActuelle = this.pieceSuivante;
-            pieceActuelle.setPosition(largeur/ 2 - 1, 2);
+            pieceActuelle.setPosition(largeur/ 2 - 1, ORDONNEE_APPARTION_PIECE_ACTUELLE);
             pcs.firePropertyChange(MODIFICATION_PIECE_ACTUELLE, pieceTemp, this.pieceActuelle);
         }
         Piece pieceTemp = this.pieceSuivante;
@@ -102,6 +107,17 @@ public class Puits {
                 gererCollision();
             }
         }
+    }
+
+    public boolean isLimitReached(){
+        Element[] ligneLimite = tas.getElements()[2];
+
+        for(Element element : ligneLimite){
+            if(element != null)
+                return true;
+        }
+
+        return false;
     }
 
     public void setLargeur(int largeur) {
