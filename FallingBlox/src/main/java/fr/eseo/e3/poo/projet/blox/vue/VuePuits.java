@@ -1,12 +1,12 @@
 package fr.eseo.e3.poo.projet.blox.vue;
 
 import fr.eseo.e3.poo.projet.blox.controleur.PieceDeplacement;
+import fr.eseo.e3.poo.projet.blox.controleur.PieceDeplacementClavier;
 import fr.eseo.e3.poo.projet.blox.controleur.PieceRotation;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.beans.*;
 
 public class VuePuits extends JPanel implements PropertyChangeListener {
@@ -22,12 +22,19 @@ public class VuePuits extends JPanel implements PropertyChangeListener {
         this.setPreferredSize(new Dimension(TAILLE_PAR_DEFAUT * puits.getLargeur() +2, TAILLE_PAR_DEFAUT * puits.getProfondeur() +2));
         vueTas = new VueTas(this);
 
+        //Cette ligne permet de faire fonctionner le clavier
+        //Vouez-lui un culte s'il-vous-plaît, son existance m'est salvatrice
+        setFocusable(true);
+
         //Listeners
         puits.addPropertyChangeListener(this);
         PieceDeplacement pieceDeplacement = new PieceDeplacement(this);
+        PieceDeplacementClavier pieceDeplacementClavier = new PieceDeplacementClavier(this);
         this.addMouseMotionListener(pieceDeplacement);
         this.addMouseListener(pieceDeplacement);
         this.addMouseWheelListener(pieceDeplacement);
+
+        this.addKeyListener(pieceDeplacementClavier);
 
         this.addMouseListener(new PieceRotation(this));
     }
@@ -40,6 +47,7 @@ public class VuePuits extends JPanel implements PropertyChangeListener {
         //Listeners
         puits.addPropertyChangeListener(this);
         this.addMouseMotionListener(new PieceDeplacement(this));
+        this.addKeyListener(new PieceDeplacementClavier(this));
     }
 
     //Accesseurs

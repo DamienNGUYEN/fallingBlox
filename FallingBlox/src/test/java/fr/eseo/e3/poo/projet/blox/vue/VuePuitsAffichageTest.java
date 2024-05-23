@@ -43,7 +43,7 @@ public class VuePuitsAffichageTest {
 
         f.setSize(vuePuits.getPreferredSize().width + panneauInformation.getPreferredSize().width + 22, vuePuits.getPreferredSize().height + 45);
 
-        //f.pack();
+        f.setResizable(false);
 
         f.setLocation((ecranLargeur - f.getWidth())/2,
                 (ecranHauteur - f.getHeight())/2);
@@ -67,11 +67,6 @@ public class VuePuitsAffichageTest {
 
 
 public static void main (String [] args) {
-    SwingUtilities.invokeLater(new Runnable () {
-        @Override
-        public void run() {
-            new VuePuitsAffichageTest();
-        }
-    });
+    SwingUtilities.invokeLater(VuePuitsAffichageTest::new);
 }
 }
