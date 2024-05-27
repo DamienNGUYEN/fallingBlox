@@ -16,7 +16,7 @@ public class VuePuitsAffichageTest {
     private static void testConstructeurPuits(){
 
         //Créer le JPanel
-        JFrame f = new JFrame("Puits");
+        JFrame f = new JFrame("Falling Blox");
         Puits puits = new Puits(10, 20, 29, 5);
         VuePuits vuePuits = new VuePuits(puits);
 
@@ -68,8 +68,9 @@ public class VuePuitsAffichageTest {
 
     }
 
-
-public static void main (String [] args) {
-    SwingUtilities.invokeLater(VuePuitsAffichageTest::new);
-}
+    /*
+    public static void main (String [] args) {
+        SwingUtilities.invokeLater(VuePuitsAffichageTest::new);
+    }
+    */
 }

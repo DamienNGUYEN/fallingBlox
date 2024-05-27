@@ -13,14 +13,14 @@ public class Score extends JLabel implements PropertyChangeListener {
     public Score(Puits puits){
         this.puits = puits;
         puits.getTas().addPropertyChangeListener(this);
-        this.setText("Score : 0");
+        this.setText("0");
         this.setPreferredSize(new Dimension(60, 20));
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent event) {
         if (event.getPropertyName().equals(puits.getTas().NOUVEAU_SCORE)){
-            this.setText("Score : " + String.valueOf(event.getNewValue()));
+            this.setText(String.valueOf(event.getNewValue()));
             this.repaint();
         }
     }

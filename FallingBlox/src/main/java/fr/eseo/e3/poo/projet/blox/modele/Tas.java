@@ -8,9 +8,12 @@ import java.util.Random;
 
 public class Tas {
     public String  NOUVEAU_SCORE = "nouveauScore";
+    public String  NOUVEAU_NIVEAU = "nouveauNiveau";
     private Puits puits;
     private Element [][] elements;
     private int score = 0;
+    private int ligneSup = 0;
+    private int niveau = 1;
     private PropertyChangeSupport pcs;
 
     public Tas(Puits puits){
@@ -70,25 +73,52 @@ public class Tas {
      */
     public void supprimerLigne(){
 
-        for (int y=elements.length - 1; y>=0; y--){
-
+        //Supprime et compte les lignes
+        int combo = 0;
+        for (int y=elements.length - 1; y>=0; y--) {
             boolean full = true;
-            for (int x=0; x<elements[y].length; x++){
-                if (elements[y][x] == null){
+            for (int x = 0; x < elements[y].length; x++) {
+                if (elements[y][x] == null) {
                     full = false;
                     break;
                 }
             }
-            if(full){
-                for (int i=y; i>0; i--){
+            if (full) {
+                for (int i = y; i > 0; i--) {
                     elements[i] = elements[i - 1];
                 }
                 elements[0] = new Element[elements[0].length];
                 y += 1;
-                score += 1;
-                pcs.firePropertyChange(NOUVEAU_SCORE, score -1, score);
+                combo += 1;
+
             }
         }
+
+        //Change le score en fonction du combo
+        switch (combo){
+            case 1:
+                pcs.firePropertyChange(NOUVEAU_SCORE, score, score + 100 * niveau);
+                score = score  + 100 * niveau;
+                System.out.println(score);
+            case 2:
+                pcs.firePropertyChange(NOUVEAU_SCORE, score, score + 300 * niveau);
+                score += 300 * niveau;
+            case 3:
+                pcs.firePropertyChange(NOUVEAU_SCORE, score, score + 500 * niveau);
+                score += 500 * niveau;
+            case 4:
+                pcs.firePropertyChange(NOUVEAU_SCORE, score, score + 800 * niveau);
+                score += 800 * niveau;
+            }
+
+        //Met à jour le nombre de ligne supprimées ainsi que le niveau
+        ligneSup += combo;
+
+        int oldNiv = niveau;
+        niveau = ligneSup/10 + 1;
+
+        if (oldNiv != niveau)
+            pcs.firePropertyChange(NOUVEAU_NIVEAU, oldNiv, niveau);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener){

@@ -29,13 +29,18 @@ public class Game {
         int ecranHauteur = (int)tailleEcran.getHeight();
         int ecranLargeur = (int)tailleEcran.getWidth();
 
+        JLabel labelScore = new JLabel("Score :");
+
         //Ajouter le JPanel au JFrame
         f.add(vuePuits);
         f.add(panneauInformation);
         f.add(score);
+        f.add(labelScore);
         vuePuits.setBounds(5, 5, vuePuits.getPreferredSize().width, vuePuits.getPreferredSize().height);
         panneauInformation.setBounds(vuePuits.getPreferredSize().width + 5, 5, panneauInformation.getPreferredSize().width, panneauInformation.getPreferredSize().height);
-        score.setBounds(vuePuits.getPreferredSize().width + 10, panneauInformation.getPreferredSize().height + 10, score.getPreferredSize().width, score.getPreferredSize().height);
+        score.setBounds(vuePuits.getPreferredSize().width + 10, panneauInformation.getPreferredSize().height + 30, score.getPreferredSize().width, score.getPreferredSize().height);
+        labelScore.setBounds(vuePuits.getPreferredSize().width + 10, panneauInformation.getPreferredSize().height + 10, score.getPreferredSize().width, score.getPreferredSize().height);
+
 
         f.setLayout(null);
 
