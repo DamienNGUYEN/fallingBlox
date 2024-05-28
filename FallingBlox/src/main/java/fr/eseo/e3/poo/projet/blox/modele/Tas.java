@@ -93,22 +93,24 @@ public class Tas {
 
             }
         }
-
         //Change le score en fonction du combo
         switch (combo){
             case 1:
                 pcs.firePropertyChange(NOUVEAU_SCORE, score, score + 100 * niveau);
-                score = score  + 100 * niveau;
-                System.out.println(score);
+                score = score + 100 * niveau;
+                break;
             case 2:
                 pcs.firePropertyChange(NOUVEAU_SCORE, score, score + 300 * niveau);
                 score += 300 * niveau;
+                break;
             case 3:
                 pcs.firePropertyChange(NOUVEAU_SCORE, score, score + 500 * niveau);
                 score += 500 * niveau;
+                break;
             case 4:
                 pcs.firePropertyChange(NOUVEAU_SCORE, score, score + 800 * niveau);
                 score += 800 * niveau;
+                break;
             }
 
         //Met à jour le nombre de ligne supprimées ainsi que le niveau
@@ -116,9 +118,11 @@ public class Tas {
 
         int oldNiv = niveau;
         niveau = ligneSup/10 + 1;
+        System.out.println(ligneSup + " : " + niveau);
 
-        if (oldNiv != niveau)
+        if (oldNiv != niveau) {
             pcs.firePropertyChange(NOUVEAU_NIVEAU, oldNiv, niveau);
+        }
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener){
