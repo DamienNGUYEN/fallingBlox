@@ -20,7 +20,7 @@ public class VuePuitsAffichageTest {
         Puits puits = new Puits(10, 20, 29, 5);
         VuePuits vuePuits = new VuePuits(puits);
 
-        UsineDePiece.setMode(UsineDePiece.ALEATOIRE_COMPLET);
+        UsineDePiece.setMode(UsineDePiece.ALEATOIRE_PIECE);
 
         vuePuits.getPuits().setPieceSuivante(UsineDePiece.genererPiece());
         vuePuits.getPuits().setPieceSuivante(UsineDePiece.genererPiece());

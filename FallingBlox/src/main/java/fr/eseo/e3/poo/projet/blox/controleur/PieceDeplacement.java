@@ -4,6 +4,7 @@ import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
+import javax.swing.*;
 import java.awt.event.*;
 
 public class PieceDeplacement extends MouseAdapter {
@@ -59,4 +60,16 @@ public class PieceDeplacement extends MouseAdapter {
         }
     }
 
+    @Override
+    public void mouseClicked(MouseEvent evt) {
+        if (SwingUtilities.isMiddleMouseButton(evt)) {
+            while(true){
+                try{
+                    puits.getPieceActuelle().deplacerDe(0,1);
+                }catch(BloxException e){
+                    return;
+                }
+            }
+        }
+    }
 }
