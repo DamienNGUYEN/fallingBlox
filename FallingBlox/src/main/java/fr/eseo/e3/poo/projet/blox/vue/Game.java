@@ -9,10 +9,16 @@ import java.awt.*;
 
 public class Game {
 
-    public Game(int mode) {
+    public Game(int mode, int nbElements) {
         //Créer le JPanel
         JFrame f = new JFrame("Falling Blox");
-        Puits puits = new Puits(10, 20, 29, 5);
+        Puits puits;
+        if (nbElements == 0){
+            puits = new Puits(10, 20);
+        }
+        else {
+            puits = new Puits(10, 20, nbElements);
+        }
         VuePuits vuePuits = new VuePuits(puits);
 
         UsineDePiece.setMode(mode);

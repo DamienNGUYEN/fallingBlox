@@ -118,7 +118,6 @@ public class Tas {
 
         int oldNiv = niveau;
         niveau = ligneSup/10 + 1;
-        System.out.println(ligneSup + " : " + niveau);
 
         if (oldNiv != niveau) {
             pcs.firePropertyChange(NOUVEAU_NIVEAU, oldNiv, niveau);
