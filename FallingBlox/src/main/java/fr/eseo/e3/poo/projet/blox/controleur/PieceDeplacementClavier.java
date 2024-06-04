@@ -1,7 +1,10 @@
 package fr.eseo.e3.poo.projet.blox.controleur;
 
 import fr.eseo.e3.poo.projet.blox.modele.BloxException;
+import fr.eseo.e3.poo.projet.blox.modele.Coordonnees;
+import fr.eseo.e3.poo.projet.blox.modele.Element;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
+import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
 import java.awt.event.KeyAdapter;
@@ -61,6 +64,19 @@ public class PieceDeplacementClavier extends KeyAdapter {
                     return;
                 }
             }
+        }
+
+        //Echange entre la pièce suivante et la pièce actuelle
+        else if(e.getKeyCode() == KeyEvent.VK_T){
+            Element elemRefActuelle = puits.getPieceActuelle().getElements().getFirst();
+            Coordonnees cooActuelle = elemRefActuelle.getCoordonnees();
+
+            Piece pieceTmp = puits.getPieceSuivante();
+            puits.setPieceSuivante(puits.getPieceActuelle());
+            puits.setPieceActuelle(pieceTmp);
+            puits.getPieceActuelle().setPosition(cooActuelle.getAbscisse(), cooActuelle.getOrdonnee());
+
+            puits.getPieceSuivante().setPosition(2,3);
         }
 
         vuePuits.repaint();

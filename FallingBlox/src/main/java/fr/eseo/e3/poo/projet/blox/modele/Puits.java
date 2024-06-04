@@ -93,6 +93,10 @@ public class Puits {
         pcs.firePropertyChange(MODIFICATION_PIECE_SUIVANTE, pieceTemp, pieceSuivante);
     }
 
+    public void setPieceActuelle(Piece pieceActuelle) {
+        this.pieceActuelle = pieceActuelle;
+    }
+
     private void gererCollision(){
         tas.ajouterElements(pieceActuelle);
         setPieceSuivante(UsineDePiece.genererPiece());
@@ -143,8 +147,7 @@ public class Puits {
         else {
             String classe = String.valueOf(pieceSuivante.getClass());
             int n = String.valueOf(pieceSuivante.getClass()).length();
-            textPieceSuivante = classe.substring(n - 6) + " :\n" +
-                    pieceSuivante.toString();
+            textPieceSuivante = classe.substring(n - 6) + " :\n" + pieceSuivante;
         }
 
         return "Puits : Dimension " + largeur + " x " + profondeur +
