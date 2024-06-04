@@ -9,7 +9,7 @@ public class Puits {
     public int PROFONDEUR_PAR_DEFAUT = 20;
     public final String  MODIFICATION_PIECE_ACTUELLE = "pieceActuelle";
     public final String  MODIFICATION_PIECE_SUIVANTE = "pieceSuivante";
-    public final int ORDONNEE_APPARTION_PIECE_ACTUELLE = 2;
+    public static final int ORDONNEE_APPARTION_PIECE_ACTUELLE = 2;
     private int largeur;
     private int profondeur;
     private Piece pieceActuelle;
